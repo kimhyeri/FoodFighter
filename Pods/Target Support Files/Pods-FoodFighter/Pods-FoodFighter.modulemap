@@ -1,0 +1,6 @@
+framework module Pods_FoodFighter {
+  umbrella header "Pods-FoodFighter-umbrella.h"
+
+  export *
+  module * { export * }
+}
