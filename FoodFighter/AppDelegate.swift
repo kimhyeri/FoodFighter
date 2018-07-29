@@ -14,8 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    var images = [("image0","한식"),("image1", "중식"),("image2", "일식"),("image3", "양식"),("image4", "패스트푸드"),("image5", "디저트"),("image6", "야식")]
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UIApplication.shared.statusBarStyle = .lightContent
+    
+        
         print(Realm.Configuration.defaultConfiguration.fileURL)
 
         do{

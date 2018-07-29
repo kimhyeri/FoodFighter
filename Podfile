@@ -6,6 +6,7 @@ target 'FoodFighter' do
   use_frameworks!
 	pod'RealmSwift'
 pod 'RevealingSplashView'
+pod 'SkyFloatingLabelTextField', '~> 3.0'
   # Pods for FoodFighter
 
 end
