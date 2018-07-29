@@ -34,7 +34,14 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-       
+            do{
+                try self.realm.write {
+                    self.realm.delete(self.listArray![indexPath.row])
+                    tableView.reloadData()
+                }
+            }catch {
+                print("error")
+            }
         }
     }
     
@@ -62,7 +69,7 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
     func check(){
         print("nothing")
         let nothingView = UIView()
-        nothingView.backgroundColor = .white
+        nothingView.backgroundColor = .clear
         nothingView.frame = CGRect(x: 0, y: self.view.frame.height / 3, width: self.view.frame.width, height: self.view.frame.height / 2)
         view.addSubview(nothingView)
         
