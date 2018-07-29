@@ -11,8 +11,9 @@ import RealmSwift
 import SkyFloatingLabelTextField
 
 
-class AddListViewController: UIViewController {
+class AddListViewController: UIViewController , UITextFieldDelegate{
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var imageName: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var dateText: SkyFloatingLabelTextField!
@@ -27,9 +28,13 @@ class AddListViewController: UIViewController {
     let realm = try! Realm()
     var datePicker : UIDatePicker?
     var listArray : Results<MainList>?
-
+    var date: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveButton.isEnabled = false
+
+        addStatusBar()
         addTextField()
     }
 
@@ -56,7 +61,7 @@ class AddListViewController: UIViewController {
         new.title = (restName.text)!
         new.descript = (dateText.text)!
         new.image = self.buttonCount
-        new.createdTime = Date()
+        new.createdTime = date
         
         self.save(foodList: new)
         
@@ -92,11 +97,13 @@ class AddListViewController: UIViewController {
         datePicker?.locale = NSLocale(localeIdentifier: "ko_KO") as Locale
         datePicker?.datePickerMode = .dateAndTime
         datePicker?.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
+        datePicker?.minimumDate = Date() 
         dateText.inputView = datePicker
 
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){
+        date = datePicker.date
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "YYYY년 MM월 dd일 HH시 mm분"
         dateText.text = dateFormat.string(from: datePicker.date)
@@ -125,6 +132,19 @@ class AddListViewController: UIViewController {
     func setImage(count: Int) {
         self.imageName.text = foodList.images[count].1
         self.imageView.image = UIImage(named: foodList.images[count].0)
+    }
+    
+
+    func checkBolck() {
+        if (restName.text?.count)! >= 1 && (dateText.text?.count)! >= 1 {
+            saveButton.isEnabled = true
+        }else{
+            saveButton.isEnabled = false
+        }
+    }
+    
+    @IBAction func textChanged(_ sender: SkyFloatingLabelTextField) {
+        checkBolck()
     }
 }
 

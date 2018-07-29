@@ -7,6 +7,8 @@ target 'FoodFighter' do
 	pod'RealmSwift'
 pod 'RevealingSplashView'
 pod 'SkyFloatingLabelTextField', '~> 3.0'
+pod 'SwipeCellKit'
+
   # Pods for FoodFighter
 
 end

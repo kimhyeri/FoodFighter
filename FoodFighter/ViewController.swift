@@ -9,14 +9,28 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
+class ViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     let realm = try! Realm()
-    
+    let calender = NSCalendar.current
     var listArray : Results<MainList>?
+    let defaults = UserDefaults.standard
+    
     var foodList = FoodList()
+    
+    func dateCal(date: Date) -> Int{
+        let now = Date()
+        let date1 = calender.startOfDay(for: now)
+        let date2 = calender.startOfDay(for: date)
+        let components = calender.dateComponents([.day], from: date1, to: date2)
+        return components.day!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.showAlertController(style:. actionSheet)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (listArray?.count)!
@@ -24,10 +38,12 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainListTableViewCell
+        
         cell.thumImage?.image = UIImage(named: foodList.images[(listArray? [indexPath.row].image)!].0)
         cell.descript.text = listArray? [indexPath.row].descript
         cell.title.text = listArray? [indexPath.row].title
-    
+        cell.dDay.text = "D-\(dateCal(date: (listArray?[indexPath.row].createdTime)!))"
+        
         return cell
     }
     
@@ -37,7 +53,7 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
             do{
                 try self.realm.write {
                     self.realm.delete(self.listArray![indexPath.row])
-                    tableView.reloadData()
+                    loadList()
                 }
             }catch {
                 print("error")
@@ -47,6 +63,7 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addStatusBar()
         tableView.delegate = self
         tableView.dataSource = self
         loadList()
@@ -59,15 +76,14 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
     
     func loadList () {
         listArray = realm.objects(MainList.self)
+        
         if listArray?.count == 0 {
             check()
-        }else {
-            self.tableView.reloadData()
         }
+        self.tableView.reloadData()
     }
     
     func check(){
-        print("nothing")
         let nothingView = UIView()
         nothingView.backgroundColor = .clear
         nothingView.frame = CGRect(x: 0, y: self.view.frame.height / 3, width: self.view.frame.width, height: self.view.frame.height / 2)
@@ -79,15 +95,53 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
         nothingView.addSubview(imageView)
         
         let label = UILabel()
-        label.text = "등록된 일정이 없습니다 😛"
+        label.text = "푸드파이더의 일정을 등록하세요 😛"
         label.sizeToFit()
         label.textAlignment = .center
-        label.frame = CGRect(x: (view.frame.width - 200) / 2, y: 0 , width: 200, height: 20)
+        label.frame = CGRect(x: (view.frame.width - 300) / 2, y: 0 , width: 300, height: 20)
         nothingView.addSubview(label)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func showAlertController(style: UIAlertControllerStyle){
         
+        let alertController: UIAlertController
+        alertController = UIAlertController(title: "푸드파이터", message: "음식을 드셨나요?", preferredStyle: style)
+        
+        //        let noAction: UIAlertAction
+        //        noAction = UIAlertAction(title: "위젯에 등록하기", style: .cancel, handler: {
+        //            (action: UIAlertAction) in
+        //            if let indexPath = self.tableView.indexPathForSelectedRow {
+        //                if let item = self.listArray?[indexPath.row] {
+        //                    self.defaults.set(item.title, forKey: "widgetTitle")
+        //                    self.defaults.set(self.foodList.images[(self.listArray? [indexPath.row].image)!].0, forKey: "widgetImage")
+        //                    self.defaults.set("D-\(self.dateCal(date: (self.listArray?[indexPath.row].createdTime)!))", forKey: "widgetDday")
+        //
+        //                }
+        //            }
+        //        })
+        let noAction: UIAlertAction
+        noAction = UIAlertAction(title: "아니요 😂", style: .cancel, handler: nil)
+        
+        let cancelAction: UIAlertAction
+        cancelAction = UIAlertAction(title: "네 😇", style: .default, handler: {(
+            action: UIAlertAction) in
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                if let item = self.listArray?[indexPath.row] {
+                    do {
+                        try self.realm.write {
+                            item.done = true
+                        }
+                    }catch {
+                        print("Error")
+                    }
+                }
+            }
+        })
+        
+        alertController.addAction(noAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

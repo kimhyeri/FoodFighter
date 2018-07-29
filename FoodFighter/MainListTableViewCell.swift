@@ -10,6 +10,7 @@ import UIKit
 
 class MainListTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var dDay: UILabel!
     @IBOutlet weak var thumImage: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var descript: UILabel!
