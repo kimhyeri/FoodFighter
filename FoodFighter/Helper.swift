@@ -13,7 +13,7 @@ extension UIViewController{
     func addStatusBar(){
         let statusBar = UIView()
         self.view.addSubview(statusBar)
-        statusBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20)
+        statusBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45)
        
         statusBar.backgroundColor = UIColor(hexString: "#FFD4B7")
     }
