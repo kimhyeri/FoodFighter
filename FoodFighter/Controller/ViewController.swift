@@ -14,7 +14,6 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func historyButton(_ sender: Any) {
-        print("button")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "going") as! HistoryViewController
         vc.historyArray = loadhistory()
         self.navigationController?.pushViewController(vc, animated: true)
@@ -22,14 +21,13 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
 
     
     var historyArray : Results<MainList>?
+    var listArray : Results<MainList>?
+    var foodList = FoodList()
 
     let realm = try! Realm()
     let calender = NSCalendar.current
-    var listArray : Results<MainList>?
     let defaults = UserDefaults.standard
-    
-    var foodList = FoodList()
-    
+
     func dateCal(date: Date) -> Int{
         let now = Date()
         let date1 = calender.startOfDay(for: now)
@@ -77,6 +75,7 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
         tableView.delegate = self
         tableView.dataSource = self
         loadList()
+        setNaigationBackButton()
         
     }
     
@@ -94,7 +93,7 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
     }
     
     func loadhistory () -> Results<MainList>{
-        historyArray = realm.objects(MainList.self)
+        historyArray = realm.objects(MainList.self).filter("done == true")
         return historyArray!
     }
     

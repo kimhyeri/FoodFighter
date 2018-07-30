@@ -14,19 +14,16 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "foodfighter")!,iconInitialSize: CGSize(width: 150, height: 150), backgroundColor: UIColor.white)
+        let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "foodfighter")!,iconInitialSize: CGSize(width: 150, height: 150), backgroundColor: UIColor(hexString: "#FFAA64"))
         self.view.addSubview(revealingSplashView)
         
         revealingSplashView.startAnimation(){
-            print("Completed")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "start")
             self.present(vc!, animated: false, completion: nil)
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

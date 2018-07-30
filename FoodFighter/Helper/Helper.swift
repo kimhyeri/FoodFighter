@@ -15,7 +15,7 @@ extension UIViewController{
         self.view.addSubview(statusBar)
         statusBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45)
        
-        statusBar.backgroundColor = UIColor(hexString: "#FFD4B7")
+        statusBar.backgroundColor = UIColor(hexString: "#FF8264")
     }
     
     func setNavigationBar(){
@@ -25,4 +25,9 @@ extension UIViewController{
         bar.backgroundColor = UIColor.clear
     }
     
+    func setNaigationBackButton(){
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backButton")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "backButton")
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+    }
 }

@@ -20,20 +20,17 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var restName: SkyFloatingLabelTextField!
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
-    
-//    var images = [("image0","한식"),("image1", "중식"),("image2", "일식"),("image3", "양식"),("image4", "패스트푸드"),("image5", "디저트"),("image6", "야식")]
+
     var foodList = FoodList()
     var buttonCount = 0
-    
-    let realm = try! Realm()
     var datePicker : UIDatePicker?
     var listArray : Results<MainList>?
     var date: Date?
-    
+    let realm = try! Realm()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.isEnabled = false
-
         addStatusBar()
         addTextField()
     }

@@ -14,6 +14,21 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     var historyArray : Results<MainList>?
     var foodList = FoodList()
     
+    @IBOutlet weak var tableView: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        addStatusBar()
+        self.navigationItem.title = "푸드파이터 전적"
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (historyArray?.count)!
     }
@@ -26,24 +41,4 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
         
     }
-    
-    @IBOutlet weak var tableView: UITableView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        addStatusBar()
-        self.navigationItem.title = "푸드파이터 전적"
-
-    }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-
 }
