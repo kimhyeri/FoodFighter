@@ -122,7 +122,11 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
         alertController = UIAlertController(title: "푸드파이터", message: "음식을 드셨나요?", preferredStyle: style)
  
         let noAction: UIAlertAction
-        noAction = UIAlertAction(title: "아니요 😂", style: .cancel, handler: nil)
+        noAction = UIAlertAction(title: "아니요 😂", style: .cancel, handler: {(
+            action: UIAlertAction) in
+                self.showToast(message: "얼른 도전하세요")
+            }
+        )
         
         let cancelAction: UIAlertAction
         cancelAction = UIAlertAction(title: "네 😇", style: .default, handler: {(
@@ -133,6 +137,7 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
                         try self.realm.write {
                             item.done = true
                             self.loadList()
+                            self.showToast(message: "진정한 푸드파이터 입니다")
                         }
                     }catch {
                         print("Error")
