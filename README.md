@@ -4,9 +4,6 @@
 ## 푸드파이터
 > 먹을 일정을 기록하고 먹었던 음식은 기록된다.
 
-### 
-Realm사용
-
 ### develop 
 - Language: Swift4
 - Tool: Xcode, Realm
