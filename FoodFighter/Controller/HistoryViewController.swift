@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HistoryViewController: UIViewController {
     
     var historyArray : Results<MainList>?
     var foodList = FoodList()
@@ -21,24 +21,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.delegate = self
         addStatusBar()
-        self.navigationItem.title = "푸드파이터 전적"
+        setTitle()
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (historyArray?.count)!
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellHist", for: indexPath) as! MainListTableViewCell
-        cell.thumImage?.image = UIImage(named: foodList.images[(historyArray? [indexPath.row].image)!].0)
-        cell.descript.text = historyArray? [indexPath.row].descript
-        cell.title.text = historyArray? [indexPath.row].title
-        return cell
-        
-    }
+   
 }

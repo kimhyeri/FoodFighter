@@ -27,6 +27,9 @@
 		35A5E4AA210CFA94002A1957 /* MainListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A5E4A9210CFA94002A1957 /* MainListTableViewCell.swift */; };
 		35A5E4AC210CFB04002A1957 /* MainList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A5E4AB210CFB04002A1957 /* MainList.swift */; };
 		35A5E4AE210CFB97002A1957 /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A5E4AD210CFB97002A1957 /* AddListViewController.swift */; };
+		35CF880F21540D9500AB9067 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CF880E21540D9500AB9067 /* LaunchView.swift */; };
+		35CF881121540E0500AB9067 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CF881021540E0500AB9067 /* HistoryView.swift */; };
+		35CF88132154111400AB9067 /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CF88122154111400AB9067 /* AddListView.swift */; };
 		66F9CA9836D0D978F3A38BBB /* Pods_FoodFighter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ECEB34A89784D9FA4BAFB8 /* Pods_FoodFighter.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,9 @@
 		35A5E4A9210CFA94002A1957 /* MainListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListTableViewCell.swift; sourceTree = "<group>"; };
 		35A5E4AB210CFB04002A1957 /* MainList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainList.swift; sourceTree = "<group>"; };
 		35A5E4AD210CFB97002A1957 /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
+		35CF880E21540D9500AB9067 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		35CF881021540E0500AB9067 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		35CF88122154111400AB9067 /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
 		64ECEB34A89784D9FA4BAFB8 /* Pods_FoodFighter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodFighter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCA409AA3442F8B3925F450 /* Pods-FoodFighter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodFighter.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodFighter/Pods-FoodFighter.release.xcconfig"; sourceTree = "<group>"; };
 		ED3FA5A36F903D9B9ECDE1E3 /* Pods-FoodFighter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodFighter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodFighter/Pods-FoodFighter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				3551E889210CF5B2009DF002 /* Main.storyboard */,
+				35CF880E21540D9500AB9067 /* LaunchView.swift */,
+				35CF881021540E0500AB9067 /* HistoryView.swift */,
+				35CF88122154111400AB9067 /* AddListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -355,9 +364,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				356A5921210E469E003C20BB /* Helper.swift in Sources */,
+				35CF880F21540D9500AB9067 /* LaunchView.swift in Sources */,
 				356A58FC210D9E3F003C20BB /* CustomNaviController.swift in Sources */,
 				356A5904210DD35B003C20BB /* Hex.swift in Sources */,
+				35CF881121540E0500AB9067 /* HistoryView.swift in Sources */,
 				3551E888210CF5B2009DF002 /* ViewController.swift in Sources */,
+				35CF88132154111400AB9067 /* AddListView.swift in Sources */,
 				356A5906210DE312003C20BB /* FoodList.swift in Sources */,
 				356A5923210EE8AA003C20BB /* HistoryViewController.swift in Sources */,
 				356A58FA210D9B22003C20BB /* LaunchViewController.swift in Sources */,
@@ -521,7 +533,10 @@
 				DEVELOPMENT_TEAM = H92U9KV5T2;
 				INFOPLIST_FILE = FoodFighter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyeri.FoodFighter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -540,7 +555,10 @@
 				DEVELOPMENT_TEAM = H92U9KV5T2;
 				INFOPLIST_FILE = FoodFighter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyeri.FoodFighter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -557,7 +575,11 @@
 				DEVELOPMENT_TEAM = H92U9KV5T2;
 				INFOPLIST_FILE = extension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyeri.FoodFighter.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -575,7 +597,11 @@
 				DEVELOPMENT_TEAM = H92U9KV5T2;
 				INFOPLIST_FILE = extension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyeri.FoodFighter.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

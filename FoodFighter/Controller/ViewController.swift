@@ -11,63 +11,15 @@ import RealmSwift
 
 class ViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    @IBAction func historyButton(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "going") as! HistoryViewController
-        vc.historyArray = loadhistory()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-
-    
     var historyArray : Results<MainList>?
     var listArray : Results<MainList>?
     var foodList = FoodList()
-
+    
     let realm = try! Realm()
     let calender = NSCalendar.current
     let defaults = UserDefaults.standard
 
-    func dateCal(date: Date) -> Int{
-        let now = Date()
-        let date1 = calender.startOfDay(for: now)
-        let date2 = calender.startOfDay(for: date)
-        let components = calender.dateComponents([.day], from: date1, to: date2)
-        return components.day!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.showAlertController(style:. actionSheet)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (listArray?.count)!
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainListTableViewCell
-        
-        cell.thumImage?.image = UIImage(named: foodList.images[(listArray? [indexPath.row].image)!].0)
-        cell.descript.text = listArray? [indexPath.row].descript
-        cell.title.text = listArray? [indexPath.row].title
-        cell.dDay.text = "D-\(dateCal(date: (listArray?[indexPath.row].createdTime)!))"
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            do{
-                try self.realm.write {
-                    self.realm.delete(self.listArray![indexPath.row])
-                    loadList()
-                }
-            }catch {
-                print("error")
-            }
-        }
-    }
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +31,18 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    @IBAction func historyButton(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "going") as! HistoryViewController
+        vc.historyArray = loadhistory()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func dateCal(date: Date) -> Int{
+        let now = Date()
+        let date1 = calender.startOfDay(for: now)
+        let date2 = calender.startOfDay(for: date)
+        let components = calender.dateComponents([.day], from: date1, to: date2)
+        return components.day!
     }
     
     func loadList () {
@@ -153,3 +115,40 @@ class ViewController: UIViewController , UITableViewDataSource, UITableViewDeleg
     }
 }
 
+//MARK: manage tableView
+extension ViewController {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.showAlertController(style:. actionSheet)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (listArray?.count)!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainListTableViewCell
+        
+        cell.thumImage?.image = UIImage(named: foodList.images[(listArray? [indexPath.row].image)!].0)
+        cell.descript.text = listArray? [indexPath.row].descript
+        cell.title.text = listArray? [indexPath.row].title
+        cell.dDay.text = "D-\(dateCal(date: (listArray?[indexPath.row].createdTime)!))"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            do{
+                try self.realm.write {
+                    self.realm.delete(self.listArray![indexPath.row])
+                    loadList()
+                }
+            }catch {
+                print("error")
+            }
+        }
+    }
+    
+}
