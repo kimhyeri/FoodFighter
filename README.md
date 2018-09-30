@@ -11,6 +11,9 @@
 로컬 데이터 DB선택을 Realm으로 정함.  
 Realm은 빠르고 디비 설계가 간편함.
 
+### Architecture
+MVC (Model - View - Controller)
+
 ### Example
 main model DB example
 ```
@@ -23,7 +26,7 @@ class MainList : Object {
 }
 ```
 
-## App Store
+## App Store 
 <a href="https://itunes.apple.com/us/app/%ED%91%B8%EB%93%9C%ED%8C%8C%EC%9D%B4%ED%84%B0/id1419747262?mt=8"><img src="./screenshot/AppStore.png" width="170" height="58"></a>
 
 ### Etc
