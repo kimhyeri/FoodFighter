@@ -37,8 +37,15 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     
     @IBAction func pressedSaveButton(_ sender: Any) {
         let new = MainList()
-        new.title = (restName.text)!
-        new.descript = (dateText.text)!
+
+        if let title = restName.text {
+            new.title = title
+        }
+        
+        if let date = dateText.text {
+            new.descript = date
+        }
+        
         new.image = self.buttonCount
         new.createdTime = date
         
@@ -71,7 +78,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     @IBAction func textChanged(_ sender: SkyFloatingLabelTextField) {
         checkBolck()
     }
-    
+
     func save(foodList: MainList) {
         do{
             try realm.write{

@@ -12,6 +12,10 @@ class CustomNaviController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaultNavi()
+    }
+    
+    func defaultNavi() {
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.backgroundColor = UIColor(hexString: "#FFAA64")
         self.navigationBar.shadowImage = UIImage()

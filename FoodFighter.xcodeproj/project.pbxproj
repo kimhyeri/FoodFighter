@@ -134,6 +134,7 @@
 				35CF881021540E0500AB9067 /* HistoryView.swift */,
 				35CF88122154111400AB9067 /* AddListView.swift */,
 				3515E6FF216107E6005665D8 /* MainView.swift */,
+				35A5E4A9210CFA94002A1957 /* MainListTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,7 +145,6 @@
 				3551E887210CF5B2009DF002 /* ViewController.swift */,
 				35A5E4AD210CFB97002A1957 /* AddListViewController.swift */,
 				356A5922210EE8A9003C20BB /* HistoryViewController.swift */,
-				35A5E4A9210CFA94002A1957 /* MainListTableViewCell.swift */,
 				356A58FB210D9E3F003C20BB /* CustomNaviController.swift */,
 				356A58F9210D9B22003C20BB /* LaunchViewController.swift */,
 			);

@@ -32,7 +32,7 @@ extension ViewController {
 
 
 //MARK: manage tableView
-extension ViewController {
+extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.showAlertController(style:. actionSheet)

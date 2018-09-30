@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
     
     var historyArray : Results<MainList>?
     var listArray : Results<MainList>?
