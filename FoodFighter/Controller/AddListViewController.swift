@@ -31,7 +31,6 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.isEnabled = false
-        addStatusBar()
         addTextField()
     }
     

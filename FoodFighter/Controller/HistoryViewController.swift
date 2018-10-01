@@ -20,7 +20,6 @@ class HistoryViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        addStatusBar()
         setTitle()
         
     }

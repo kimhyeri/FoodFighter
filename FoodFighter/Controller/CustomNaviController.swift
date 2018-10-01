@@ -17,7 +17,6 @@ class CustomNaviController: UINavigationController {
     
     func defaultNavi() {
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationBar.backgroundColor = UIColor(hexString: "#FFAA64")
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.tintColor = .darkGray
     }

@@ -40,7 +40,7 @@ extension AddListViewController {
         dateText.lineColor = rose
         
         datePicker = UIDatePicker()
-        datePicker?.backgroundColor = UIColor(hexString: "#FFAA64")
+        datePicker?.backgroundColor = UIColor.clear
         datePicker?.locale = NSLocale(localeIdentifier: "ko_KO") as Locale
         datePicker?.datePickerMode = .dateAndTime
         datePicker?.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)

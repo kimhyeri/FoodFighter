@@ -10,12 +10,6 @@ import Foundation
 import UIKit
 
 extension UIViewController{
-    func addStatusBar(){
-        let statusBar = UIView()
-        self.view.addSubview(statusBar)
-        statusBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45)
-        statusBar.backgroundColor = UIColor(hexString: "#FF8264")
-    }
     
     func setNavigationBar(){
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
