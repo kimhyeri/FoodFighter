@@ -31,7 +31,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func historyButton(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "going") as! HistoryViewController
+        let st = UIStoryboard.init(name: "History", bundle: nil)
+        let vc = st.instantiateViewController(withIdentifier: "going") as! HistoryViewController
         vc.historyArray = loadhistory()
         self.navigationController?.pushViewController(vc, animated: true)
     }
