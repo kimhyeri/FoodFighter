@@ -49,11 +49,19 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
         cell.descript.text = listArray? [indexPath.row].descript
         cell.title.text = listArray? [indexPath.row].title
         
-        if dateCal(date: (listArray?[indexPath.row].createdTime)!) < 0 {
-            cell.dDay.text = "끝"
-        } else {
-            cell.dDay.text = "D-\(dateCal(date: (listArray?[indexPath.row].createdTime)!))"
+        if let value = listArray?[indexPath.row].createdTime {
+            if dateCal(date: value) < 0 {
+                cell.dDay.text = "끝"
+            }else {
+                cell.dDay.text = "D-\(dateCal(date: value))"
+            }
         }
+        
+//        if dateCal(date: (listArray?[indexPath.row].createdTime)!) < 0 {
+//            cell.dDay.text = "끝"
+//        } else {
+//            cell.dDay.text = "D-\(dateCal(date: (listArray?[indexPath.row].createdTime)!))"
+//        }
         
         return cell
     }
