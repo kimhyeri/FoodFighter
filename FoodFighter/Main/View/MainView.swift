@@ -48,7 +48,12 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
         cell.thumImage?.image = UIImage(named: foodList.images[(listArray? [indexPath.row].image)!].0)
         cell.descript.text = listArray? [indexPath.row].descript
         cell.title.text = listArray? [indexPath.row].title
-        cell.dDay.text = "D-\(dateCal(date: (listArray?[indexPath.row].createdTime)!))"
+        
+        if dateCal(date: (listArray?[indexPath.row].createdTime)!) < 0 {
+            cell.dDay.text = "끝"
+        } else {
+            cell.dDay.text = "D-\(dateCal(date: (listArray?[indexPath.row].createdTime)!))"
+        }
         
         return cell
     }
