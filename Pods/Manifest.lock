@@ -6,21 +6,18 @@ PODS:
     - Realm (= 3.7.5)
   - RevealingSplashView (0.5.0)
   - SkyFloatingLabelTextField (3.5.1)
-  - SwipeCellKit (2.4.3)
 
 DEPENDENCIES:
   - RealmSwift
   - RevealingSplashView
   - SkyFloatingLabelTextField (~> 3.0)
-  - SwipeCellKit
 
 SPEC CHECKSUMS:
   Realm: c286caf4dbf346ce24aad49ca76c7ce622d4a082
   RealmSwift: 2a9281e37d6de55f66f76254d49d28aeb1b729e4
   RevealingSplashView: 0794eecad3a8983ac11a1fe474e9a9b51b926780
   SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
-  SwipeCellKit: cee9906e6d3a36e22ad1a852fba7f8fa0839d113
 
-PODFILE CHECKSUM: b68bdfe36e9d87c45b532918c629e5467d759dba
+PODFILE CHECKSUM: 955cd85da7798804f1fbba16cc6b22a9658a5cd1
 
 COCOAPODS: 1.4.0

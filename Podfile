@@ -5,9 +5,8 @@ target 'FoodFighter' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 	pod'RealmSwift'
-pod 'RevealingSplashView'
-pod 'SkyFloatingLabelTextField', '~> 3.0'
-pod 'SwipeCellKit'
+	pod 'RevealingSplashView'
+	pod 'SkyFloatingLabelTextField', '~> 3.0'
 
   # Pods for FoodFighter
 
