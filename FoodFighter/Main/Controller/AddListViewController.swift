@@ -13,6 +13,7 @@ import SkyFloatingLabelTextField
 
 class AddListViewController: UIViewController , UITextFieldDelegate{
     
+    @IBOutlet weak var labelView: UIView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var imageName: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -31,6 +32,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.isEnabled = false
+        labelView.layer.cornerRadius = 10
         addTextField()
     }
     
