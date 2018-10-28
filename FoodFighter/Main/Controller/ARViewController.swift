@@ -38,7 +38,11 @@ class ARViewController: UIViewController {
         SCNView.session.pause()
     }
     
-
+    @IBAction func screenButtonPressed(_ sender: Any) {
+        var image = SCNView.snapshot()
+        print(image)
+    }
+    
 }
 
 @available(iOS 11.0, *)

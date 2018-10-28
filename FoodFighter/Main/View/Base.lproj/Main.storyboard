@@ -137,7 +137,7 @@
                                     <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XZy-DZ-oQs">
                                         <rect key="frame" x="8" y="22" width="359" height="155"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.66666666669999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.85146335660000005" green="0.85146335660000005" blue="0.85146335660000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한식" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd0-RC-1B4">
                                         <rect key="frame" x="39" y="144" width="296" height="20"/>
@@ -175,7 +175,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.66666666669999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.85146335660000005" green="0.85146335660000005" blue="0.85146335660000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Pd0-RC-1B4" secondAttribute="trailing" constant="40" id="J6x-6W-57f"/>
                                     <constraint firstItem="Iha-uw-JxM" firstAttribute="centerX" secondItem="A6s-ED-0ER" secondAttribute="centerX" id="U9L-Rg-JEJ"/>
@@ -384,7 +384,7 @@
         <!--View Controller-->
         <scene sceneID="arL-cq-x4J">
             <objects>
-                <viewController id="7aO-yr-z69" customClass="ARViewController" customModule="FoodFighter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AR" id="7aO-yr-z69" customClass="ARViewController" customModule="FoodFighter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DU2-Cy-Kos">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -392,6 +392,14 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hj4-Y1-F4V">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJQ-vN-Bcz">
+                                <rect key="frame" x="164" y="108" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="screenButtonPressed:" destination="7aO-yr-z69" eventType="touchUpInside" id="L3W-2j-A09"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -408,7 +416,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hae-1E-sAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="109"/>
+            <point key="canvasLocation" x="2436" y="96"/>
         </scene>
     </scenes>
     <resources>

@@ -24,6 +24,14 @@ extension HistoryViewController : UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let st = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = st.instantiateViewController(withIdentifier: "AR") as! ARViewController
+        self.navigationController?.pushViewController(vc, animated: false)
+        
+    }
+    
     func setTitle() {
         self.navigationItem.title = "푸드파이터 전적"
     }

@@ -57,12 +57,6 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
             }
         }
         
-//        if dateCal(date: (listArray?[indexPath.row].createdTime)!) < 0 {
-//            cell.dDay.text = "끝"
-//        } else {
-//            cell.dDay.text = "D-\(dateCal(date: (listArray?[indexPath.row].createdTime)!))"
-//        }
-        
         return cell
     }
     
