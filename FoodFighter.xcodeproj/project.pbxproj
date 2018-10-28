@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3515E700216107E6005665D8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515E6FF216107E6005665D8 /* MainView.swift */; };
-		355004F12182E138005C6FF7 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355004F02182E138005C6FF7 /* ARViewController.swift */; };
 		3551E886210CF5B2009DF002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3551E885210CF5B2009DF002 /* AppDelegate.swift */; };
 		3551E888210CF5B2009DF002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3551E887210CF5B2009DF002 /* ViewController.swift */; };
 		3551E88B210CF5B2009DF002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3551E889210CF5B2009DF002 /* Main.storyboard */; };
@@ -37,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		3515E6FF216107E6005665D8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		355004F02182E138005C6FF7 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		3551E882210CF5B2009DF002 /* FoodFighter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodFighter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3551E885210CF5B2009DF002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3551E887210CF5B2009DF002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 				35A5E4AD210CFB97002A1957 /* AddListViewController.swift */,
 				356A58FB210D9E3F003C20BB /* CustomNaviController.swift */,
 				356A58F9210D9B22003C20BB /* LaunchViewController.swift */,
-				355004F02182E138005C6FF7 /* ARViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -412,7 +409,6 @@
 				356A5921210E469E003C20BB /* Helper.swift in Sources */,
 				35CF880F21540D9500AB9067 /* LaunchView.swift in Sources */,
 				356A58FC210D9E3F003C20BB /* CustomNaviController.swift in Sources */,
-				355004F12182E138005C6FF7 /* ARViewController.swift in Sources */,
 				356A5904210DD35B003C20BB /* Hex.swift in Sources */,
 				35CF881121540E0500AB9067 /* HistoryView.swift in Sources */,
 				3551E888210CF5B2009DF002 /* ViewController.swift in Sources */,
