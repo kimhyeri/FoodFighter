@@ -14,6 +14,7 @@ class HistoryViewController: UIViewController {
     var historyArray : Results<MainList>?
     var foodList = FoodList()
     
+
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {

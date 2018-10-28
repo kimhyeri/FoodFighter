@@ -21,7 +21,7 @@ extension ViewController {
         nothingView.addSubview(imageView)
         
         let label = UILabel()
-        label.text = "푸드파이터의 일정을 등록하세요"
+        label.text = "푸드파이터의 일정을 등록하세요 !"
         label.textColor = UIColor.darkGray
         label.sizeToFit()
         label.textAlignment = .center
