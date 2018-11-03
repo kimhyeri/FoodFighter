@@ -39,7 +39,11 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (listArray?.count)!
+        if let count = listArray?.count {
+            return count
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,7 +56,7 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
         if let value = listArray?[indexPath.row].createdTime {
             if dateCal(date: value) < 0 {
                 cell.dDay.text = "끝"
-            }else {
+            } else {
                 cell.dDay.text = "D-\(dateCal(date: value))"
             }
         }

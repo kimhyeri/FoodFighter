@@ -16,8 +16,9 @@ extension LaunchViewController {
         self.view.addSubview(revealingSplashView)
         
         revealingSplashView.startAnimation(){
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "start")
-            self.present(vc!, animated: false, completion: nil)
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "start"){
+                self.present(vc, animated: false, completion: nil)
+            }
         }
     }
     

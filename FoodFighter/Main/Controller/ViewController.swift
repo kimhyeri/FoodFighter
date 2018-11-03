@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     var foodList = FoodList()
     
     let realm = try! Realm()
-    let calender = NSCalendar.current
-    let defaults = UserDefaults.standard
+    private let calender = NSCalendar.current
+    private let defaults = UserDefaults.standard
 
     @IBOutlet weak var tableView: UITableView!
     
