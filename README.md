@@ -11,15 +11,20 @@
 개인 프로젝트 ‘SEEFOOD’<https://github.com/kimhyeri/SeeFood>를 통해 SQLite, Realm , Coredata, UserDefault와 
 같은 로컬 데이터베이스들의 특징을 파악한 후 다방면에서 이점이 있다고 생각된 Realm을 푸드파이터 로컬 데이터베이스로 선택함. 
 
-### 결과
-로컬 데이터 DB선택을 Realm으로 정함.  
-Realm은 빠르고 디비 설계가 간편함.
+### Realm 선택 결과
+* Realm은 디비 설계가 간편함.
+* 빠르게 성장하는 모바일 DataBase. (오픈소스) = 모바일을 위한 것으로 효율적으로 사용 가능.
+* C++ 기반의 크로스 플랫폼.
+* 쓰레드 암호화 등 다양한 기능 지원.
+* Object 상속 사용 가능.
+* 기존 ORM은 복사 필요 Realm은 불필요 - in memory 방식 사용.
 
 ### Architecture
-MVC (Model - View - Controller)
+> MVC  
+(Model - View - Controller)
 
 ### Example DB
-> main model DB example
+> main database model example
   
 ```
 class MainList : Object {
@@ -34,5 +39,5 @@ class MainList : Object {
 ## 앱 스토어
 <a href="https://itunes.apple.com/us/app/%ED%91%B8%EB%93%9C%ED%8C%8C%EC%9D%B4%ED%84%B0/id1419747262?mt=8"><img src="./screenshot/AppStore.png" width="170" height="58"></a>
 
-### 📸
+## 📸 
 ![텍스트목록](./screenshot/screen.png)
