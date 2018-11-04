@@ -49,7 +49,9 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainListTableViewCell
         
-        cell.thumImage?.image = UIImage(named: foodList.images[(listArray? [indexPath.row].image)!].0)
+        if let img = listArray?[indexPath.row].image {
+            cell.thumImage.image = UIImage(named: foodList.images[img].0)
+        }
         cell.descript.text = listArray? [indexPath.row].descript
         cell.title.text = listArray? [indexPath.row].title
         
