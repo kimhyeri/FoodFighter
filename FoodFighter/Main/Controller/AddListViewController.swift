@@ -22,10 +22,10 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var secondView: UIView!
 
     var foodList = FoodList()
-    private var buttonCount = 0
     var datePicker : UIDatePicker?
+    private var buttonCount = 0
     private var listArray : Results<MainList>?
-    private var date: Date?
+    private var myDate: Date?
     private let realm = try! Realm()
 
     override func viewDidLoad() {
@@ -36,18 +36,16 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     }
     
     @IBAction func pressedSaveButton(_ sender: Any) {
+        
         let new = MainList()
 
-        if let title = restName.text {
-            new.title = title
-        }
-        
-        if let date = dateText.text {
-            new.descript = date
-        }
-        
+        guard let title = restName.text else { return }
+        guard let date = dateText.text else { return }
+
+        new.title = title
+        new.descript = date
         new.image = self.buttonCount
-        new.createdTime = date
+        new.createdTime = myDate
         
         self.save(foodList: new)
         
@@ -90,7 +88,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){
-        date = datePicker.date
+        myDate = datePicker.date
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "YYYY년 MM월 dd일 HH시 mm분"
         dateText.text = dateFormat.string(from: datePicker.date)
