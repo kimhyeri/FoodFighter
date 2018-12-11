@@ -6,7 +6,6 @@
 //  Copyright © 2018년 hyerikim. All rights reserved.
 //
 
-import UIKit
 import RevealingSplashView
 
 extension LaunchViewController {
@@ -16,9 +15,8 @@ extension LaunchViewController {
         self.view.addSubview(revealingSplashView)
         
         revealingSplashView.startAnimation(){
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "start"){
-                self.present(vc, animated: false, completion: nil)
-            }
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "start") else { return }
+            self.present(vc, animated: false, completion: nil)
         }
     }
     

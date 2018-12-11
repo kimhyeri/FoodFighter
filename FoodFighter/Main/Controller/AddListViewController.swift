@@ -6,7 +6,6 @@
 //  Copyright © 2018년 hyerikim. All rights reserved.
 //
 
-import UIKit
 import RealmSwift
 import SkyFloatingLabelTextField
 
@@ -23,11 +22,11 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var secondView: UIView!
 
     var foodList = FoodList()
-    var buttonCount = 0
+    private var buttonCount = 0
     var datePicker : UIDatePicker?
-    var listArray : Results<MainList>?
-    var date: Date?
-    let realm = try! Realm()
+    private var listArray : Results<MainList>?
+    private var date: Date?
+    private let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()

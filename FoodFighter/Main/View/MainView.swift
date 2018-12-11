@@ -9,6 +9,7 @@
 import UIKit
 
 extension ViewController {
+    
     func setDefaultView(){
         let nothingView = UIView()
         nothingView.backgroundColor = .clear

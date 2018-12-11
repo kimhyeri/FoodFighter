@@ -6,18 +6,17 @@
 //  Copyright © 2018년 hyerikim. All rights reserved.
 //
 
-import UIKit
 import RealmSwift
 
 class ViewController: UIViewController {
     
-    var historyArray : Results<MainList>?
+    private var historyArray : Results<MainList>?
     var listArray : Results<MainList>?
     var foodList = FoodList()
     
-    let realm = try! Realm()
     private let calender = NSCalendar.current
     private let defaults = UserDefaults.standard
+    let realm = try! Realm()
 
     @IBOutlet weak var tableView: UITableView!
     
