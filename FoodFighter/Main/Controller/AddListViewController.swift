@@ -57,20 +57,17 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
         if sender.tag == 0 {
             if(buttonCount == 0) {
                 buttonCount = foodList.images.count - 1
-                setImage(count: buttonCount)
             } else {
                 buttonCount = buttonCount - 1
-                setImage(count: buttonCount)
             }
-        }else{
+        } else {
             if(buttonCount == foodList.images.count - 1) {
                 buttonCount = 0
-                setImage(count: buttonCount)
             } else {
                 buttonCount = buttonCount + 1
-                setImage(count: buttonCount)
             }
         }
+        setImage(count: buttonCount)
     }
     
     @IBAction func textChanged(_ sender: SkyFloatingLabelTextField) {
@@ -82,7 +79,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
             try realm.write{
                 realm.add(foodList)
             }
-        }catch {
+        } catch {
             print("error")
         }
     }
