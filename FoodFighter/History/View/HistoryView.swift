@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-extension HistoryViewController : UITableViewDelegate, UITableViewDataSource {
+extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = historyArray?.count {
