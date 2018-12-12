@@ -6,7 +6,6 @@
 //  Copyright © 2018년 hyerikim. All rights reserved.
 //
 
-import UIKit
 import RealmSwift
 
 class HistoryViewController: UIViewController {
