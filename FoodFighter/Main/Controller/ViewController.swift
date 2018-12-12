@@ -10,6 +10,8 @@ import RealmSwift
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     private var historyArray : Results<MainList>?
     var listArray : Results<MainList>?
     var foodList = FoodList()
@@ -17,8 +19,6 @@ class ViewController: UIViewController {
     private let calender = NSCalendar.current
     private let defaults = UserDefaults.standard
     let realm = try! Realm()
-
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +35,13 @@ class ViewController: UIViewController {
         vc.historyArray = loadhistory()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
-    func dateCal(date: Date) -> Int{
+    
+    func dateCal(date: Date) -> Int {
         let now = Date()
         let date1 = calender.startOfDay(for: now)
         let date2 = calender.startOfDay(for: date)
         let components = calender.dateComponents([.day], from: date1, to: date2)
-        return components.day!
+        return components.day ?? 0
     }
     
     func loadList () {
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    func loadhistory () -> Results<MainList>{
+    func loadhistory () -> Results<MainList> {
         historyArray = realm.objects(MainList.self).filter("done == true")
         return historyArray!
     }
@@ -62,29 +62,28 @@ class ViewController: UIViewController {
         
         let alertController: UIAlertController
         alertController = UIAlertController(title: "푸드파이터", message: "음식을 드셨나요?", preferredStyle: style)
- 
+        
         let noAction: UIAlertAction
         noAction = UIAlertAction(title: "아니요 😂", style: .cancel, handler: {(
             action: UIAlertAction) in
-                self.showToast(message: "얼른 도전하세요")
-            }
+            self.showToast(message: "얼른 도전하세요")
+        }
         )
         
         let cancelAction: UIAlertAction
         cancelAction = UIAlertAction(title: "네 😇", style: .default, handler: {(
             action: UIAlertAction) in
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                if let item = self.listArray?[indexPath.row] {
-                    do {
-                        try self.realm.write {
-                            item.done = true
-                            self.loadList()
-                            self.showToast(message: "진정한 푸드파이터 입니다")
-                        }
-                    }catch {
-                        print("Error")
+            if let indexPath = self.tableView.indexPathForSelectedRow, let item = self.listArray?[indexPath.row] {
+                do {
+                    try self.realm.write {
+                        item.done = true
+                        self.loadList()
+                        self.showToast(message: "진정한 푸드파이터 입니다")
                     }
+                }catch {
+                    print("Error")
                 }
+                
             }
         })
         

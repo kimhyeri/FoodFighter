@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: TableView delegate and datasource
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,7 +27,11 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
         
     }
-    
+
+}
+
+//MARK: SET VIEW
+extension HistoryViewController {
     func setTitle() {
         self.navigationItem.title = "푸드파이터 전적"
     }

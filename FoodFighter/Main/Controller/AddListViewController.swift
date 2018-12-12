@@ -9,7 +9,6 @@
 import RealmSwift
 import SkyFloatingLabelTextField
 
-
 class AddListViewController: UIViewController , UITextFieldDelegate{
     
     @IBOutlet weak var labelView: UIView!
@@ -36,12 +35,9 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     }
     
     @IBAction func pressedSaveButton(_ sender: Any) {
-        
-        let new = MainList()
-
         guard let title = restName.text else { return }
         guard let date = dateText.text else { return }
-
+        let new = MainList()
         new.title = title
         new.descript = date
         new.image = self.buttonCount
