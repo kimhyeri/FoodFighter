@@ -10,15 +10,14 @@ import RealmSwift
 
 class HistoryViewController: UIViewController {
     
-    var historyArray : Results<MainList>?
+    var historyArray: Results<MainList>?
     var foodList = FoodList()
 
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        
         setTitle()
         
     }

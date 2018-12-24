@@ -17,15 +17,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellHist", for: indexPath) as! MainListTableViewCell
+        guard let img = historyArray?[indexPath.row].image else { return cell }
         cell.titleView.layer.cornerRadius = 5
-        if let img = historyArray?[indexPath.row].image {
-            cell.thumImage.image = UIImage(named: foodList.images[img].0)
-        }
+        cell.thumImage.image = UIImage(named: foodList.images[img].0)
         cell.descript.text = historyArray? [indexPath.row].descript
         cell.title.text = historyArray? [indexPath.row].title
-
         return cell
-        
     }
 
 }
