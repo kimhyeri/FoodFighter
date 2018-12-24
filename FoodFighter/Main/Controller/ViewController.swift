@@ -67,8 +67,7 @@ class ViewController: UIViewController {
         noAction = UIAlertAction(title: "아니요 😂", style: .cancel, handler: {(
             action: UIAlertAction) in
             self.showToast(message: "얼른 도전하세요")
-        }
-        )
+        })
         
         let cancelAction: UIAlertAction
         cancelAction = UIAlertAction(title: "네 😇", style: .default, handler: {(
@@ -80,7 +79,7 @@ class ViewController: UIViewController {
                         self.loadList()
                         self.showToast(message: "진정한 푸드파이터 입니다")
                     }
-                }catch {
+                } catch {
                     print("Error")
                 }
                 

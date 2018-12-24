@@ -167,7 +167,6 @@
 		358696F12163DC4000D5B80F /* History */ = {
 			isa = PBXGroup;
 			children = (
-				358696F62163DC6D00D5B80F /* Model */,
 				358696F52163DC6900D5B80F /* Controller */,
 				358696F42163DC6500D5B80F /* View */,
 			);
@@ -189,13 +188,6 @@
 				356A5922210EE8A9003C20BB /* HistoryViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		358696F62163DC6D00D5B80F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		35A5E4A8210CF8FF002A1957 /* Model */ = {

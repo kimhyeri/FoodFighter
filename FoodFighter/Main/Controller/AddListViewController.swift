@@ -88,15 +88,13 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     }
     
     func checkBolck() {
-        
-        if let restCount = restName.text?.count, let dateCount = dateText.text?.count {
-            if restCount >= 1 && dateCount >= 1 {
-                saveButton.isEnabled = true
-            } else {
-                saveButton.isEnabled = false
-            }
+        guard let restCount = restName.text?.count , let dateCount = dateText.text?.count else { return }
+  
+        if restCount >= 1 && dateCount >= 1 {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
         }
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

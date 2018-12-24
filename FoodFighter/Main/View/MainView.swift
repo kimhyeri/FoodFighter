@@ -46,18 +46,17 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainListTableViewCell
         
-        if let img = listArray?[indexPath.row].image {
-            cell.thumImage.image = UIImage(named: foodList.images[img].0)
-        }
+        guard let img = listArray?[indexPath.row].image else { return cell }
+        guard let timeValue = listArray?[indexPath.row].createdTime else { return cell }
+        
+        cell.thumImage.image = UIImage(named: foodList.images[img].0)
         cell.descript.text = listArray? [indexPath.row].descript
         cell.title.text = listArray? [indexPath.row].title
         
-        if let value = listArray?[indexPath.row].createdTime {
-            if dateCal(date: value) < 0 {
-                cell.dDay.text = "끝"
-            } else {
-                cell.dDay.text = "D-\(dateCal(date: value))"
-            }
+        if dateCal(date: timeValue) < 0 {
+            cell.dDay.text = "끝"
+        } else {
+            cell.dDay.text = "D-\(dateCal(date: timeValue))"
         }
         
         return cell
@@ -71,7 +70,7 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
                     self.realm.delete(self.listArray![indexPath.row])
                     loadList()
                 }
-            }catch {
+            } catch {
                 print("error")
             }
         }
