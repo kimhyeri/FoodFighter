@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class MainList : Object {
+class MainList: Object {
     @objc dynamic var title: String = ""
     @objc dynamic var descript: String = ""
     @objc dynamic var image: Int = 0

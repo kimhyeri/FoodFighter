@@ -8,9 +8,9 @@
 
 import Foundation
 
-class FoodList {
+struct FoodList {
     
- var images = [("image0","한식"),
+  var images = [("image0","한식"),
                ("image1", "중식"),
                ("image2", "일식"),
                ("image3", "양식"),
@@ -18,4 +18,3 @@ class FoodList {
                ("image5", "디저트"),
                ("image6", "야식")]
 }
-
