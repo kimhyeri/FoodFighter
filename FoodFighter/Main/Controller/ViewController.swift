@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var historyArray : Results<MainList>?
-    var listArray : Results<MainList>?
+    private var historyArray: Results<MainList>?
+    var listArray: Results<MainList>?
     var foodList = FoodList()
     
     private let calender = NSCalendar.current
@@ -22,8 +22,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         loadList()
         setNaigationBackButton()
         
@@ -44,18 +42,14 @@ class ViewController: UIViewController {
         return components.day ?? 0
     }
     
-    func loadList () {
+    func loadList() {
         listArray = realm.objects(MainList.self).filter("done == false")
-        
-        if listArray?.count == 0 {
-            setDefaultView()
-        }
-        self.tableView.reloadData()
+        listArray?.count == 0 ? setDefaultView() : self.tableView.reloadData()
     }
     
-    func loadhistory () -> Results<MainList> {
+    func loadhistory() -> Results<MainList>? {
         historyArray = realm.objects(MainList.self).filter("done == true")
-        return historyArray!
+        return historyArray
     }
     
     func showAlertController(style: UIAlertControllerStyle){

@@ -9,7 +9,7 @@
 import Foundation
 
 struct FoodList {
-    
+
   var images = [("image0","한식"),
                ("image1", "중식"),
                ("image2", "일식"),

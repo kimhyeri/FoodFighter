@@ -21,9 +21,9 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var secondView: UIView!
 
     var foodList = FoodList()
-    var datePicker : UIDatePicker?
+    var datePicker: UIDatePicker?
     private var buttonCount = 0
-    private var listArray : Results<MainList>?
+    private var listArray: Results<MainList>?
     private var myDate: Date?
     private let realm = try! Realm()
 
