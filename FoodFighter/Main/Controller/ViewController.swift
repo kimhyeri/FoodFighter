@@ -58,14 +58,16 @@ class ViewController: UIViewController {
         alertController = UIAlertController(title: "푸드파이터", message: "음식을 드셨나요?", preferredStyle: style)
         
         let noAction: UIAlertAction
-        noAction = UIAlertAction(title: "아니요 😂", style: .cancel, handler: {(
+        noAction = UIAlertAction(title: "아니요 😂", style: .cancel, handler: {[weak self](
             action: UIAlertAction) in
+            guard let self = self else { return }
             self.showToast(message: "얼른 도전하세요")
         })
         
         let cancelAction: UIAlertAction
-        cancelAction = UIAlertAction(title: "네 😇", style: .default, handler: {(
+        cancelAction = UIAlertAction(title: "네 😇", style: .default, handler: {[weak self](
             action: UIAlertAction) in
+            guard let self = self else { return }
             if let indexPath = self.tableView.indexPathForSelectedRow, let item = self.listArray?[indexPath.row] {
                 do {
                     try self.realm.write {
