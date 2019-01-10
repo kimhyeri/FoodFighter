@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var historyArray: Results<MainList>?
     var listArray: Results<MainList>?
     var foodList = FoodList()
     
@@ -30,7 +29,6 @@ class ViewController: UIViewController {
     @IBAction func historyButton(_ sender: Any) {
         let st = UIStoryboard.init(name: "History", bundle: nil)
         let vc = st.instantiateViewController(withIdentifier: "going") as! HistoryViewController
-        vc.historyArray = loadhistory()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -44,12 +42,10 @@ class ViewController: UIViewController {
     
     func loadList() {
         listArray = realm.objects(MainList.self).filter("done == false")
-        listArray?.count == 0 ? setDefaultView() : self.tableView.reloadData()
-    }
-    
-    func loadhistory() -> Results<MainList>? {
-        historyArray = realm.objects(MainList.self).filter("done == true")
-        return historyArray
+        if listArray?.count == 0 {
+          setDefaultView()
+        }
+        self.tableView.reloadData()
     }
     
     func showAlertController(style: UIAlertControllerStyle){

@@ -12,6 +12,7 @@ class HistoryViewController: UIViewController {
     
     var historyArray: Results<MainList>?
     var foodList = FoodList()
+    let realm = try! Realm()
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -19,7 +20,12 @@ class HistoryViewController: UIViewController {
         super.viewDidLoad()
         
         setTitle()
-        
+        loadhistory()
+    }
+    
+    func loadhistory() {
+        historyArray = realm.objects(MainList.self).filter("done == true")
+        tableView.reloadData()
     }
    
 }

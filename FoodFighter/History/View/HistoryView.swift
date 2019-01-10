@@ -6,13 +6,13 @@
 //  Copyright © 2018년 hyerikim. All rights reserved.
 //
 
-import UIKit
+import RealmSwift
 
 //MARK: TableView delegate and datasource
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyArray?.count ?? 1
+        return historyArray?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -25,6 +25,21 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            do{
+                try self.realm.write {
+                    print(indexPath.row)
+                    self.realm.delete(self.historyArray![indexPath.row])
+                    loadhistory()
+                }
+            } catch {
+                print("error")
+            }
+        }
+    }
+    
 }
 
 //MARK: SET VIEW
