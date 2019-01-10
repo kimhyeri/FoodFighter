@@ -30,7 +30,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             do{
                 try self.realm.write {
-                    print(indexPath.row)
                     self.realm.delete(self.historyArray![indexPath.row])
                     loadhistory()
                 }

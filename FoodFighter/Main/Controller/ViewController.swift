@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         loadList()
         setNaigationBackButton()
+        self.navigationItem.title = "HOME"
         
     }
     
