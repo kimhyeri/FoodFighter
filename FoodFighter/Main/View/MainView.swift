@@ -8,30 +8,6 @@
 
 import UIKit
 
-extension ViewController {
-    
-    func setDefaultView(){
-        let nothingView = UIView()
-        nothingView.backgroundColor = .clear
-        nothingView.frame = CGRect(x: 0, y: self.view.frame.height / 3, width: self.view.frame.width, height: self.view.frame.height / 2)
-        view.addSubview(nothingView)
-        
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "foodfighter")
-        imageView.frame = CGRect(x: (view.frame.width - 150) / 2 , y: 0, width: 150, height: 150)
-        nothingView.addSubview(imageView)
-        
-        let label = UILabel()
-        label.text = "푸드파이터의 일정을 등록하세요 !"
-        label.textColor = UIColor.darkGray
-        label.sizeToFit()
-        label.textAlignment = .center
-        label.frame = CGRect(x: (view.frame.width - 300) / 2, y: 0 , width: 300, height: 20)
-        nothingView.addSubview(label)
-    }
-}
-
-
 //MARK: manage tableView
 extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     

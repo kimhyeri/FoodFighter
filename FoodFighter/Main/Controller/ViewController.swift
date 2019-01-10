@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     func loadList() {
         listArray = realm.objects(MainList.self).filter("done == false")
         if listArray?.count == 0 {
-          setDefaultView()
+            setDefaultView(messgae: "푸드파이터의 일정을 등록하세요 !")
         }
         self.tableView.reloadData()
     }
