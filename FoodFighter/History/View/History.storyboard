@@ -93,7 +93,7 @@
                                             <outlet property="descript" destination="EqP-x8-ErE" id="VCa-D1-spT"/>
                                             <outlet property="thumImage" destination="MfS-iu-7ud" id="uHM-v4-HN0"/>
                                             <outlet property="title" destination="reE-k4-bfk" id="jzZ-G3-aPe"/>
-                                            <outlet property="titleView" destination="sLV-3X-0ak" id="KT3-MN-keM"/>
+                                            <outlet property="titleView" destination="sLV-3X-0ak" id="Yqo-ld-bkQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
