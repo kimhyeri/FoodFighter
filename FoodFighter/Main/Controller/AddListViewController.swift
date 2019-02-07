@@ -50,13 +50,14 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     }
     
     @IBAction func rightButton(_ sender: UIButton) {
-        if sender.tag == 0 {
+        switch sender.tag {
+        case 0:
             if(buttonCount == 0) {
                 buttonCount = foodList.images.count - 1
             } else {
                 buttonCount = buttonCount - 1
             }
-        } else {
+        default:
             if(buttonCount == foodList.images.count - 1) {
                 buttonCount = 0
             } else {

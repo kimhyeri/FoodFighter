@@ -20,15 +20,12 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainListTableViewCell
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MainListTableViewCell else { return UITableViewCell() }
         guard let img = listArray?[indexPath.row].image else { return cell }
-        guard let timeValue = listArray?[indexPath.row].createdTime else { return cell }
-        
+        guard let timeValue = listArray?[indexPath.row].createdTime else { return cell }        
         cell.thumImage.image = UIImage(named: foodList.images[img].0)
         cell.descript.text = listArray? [indexPath.row].descript
         cell.title.text = listArray? [indexPath.row].title
-        
         if dateCal(date: timeValue) < 0 {
             cell.dDay.text = "끝"
         } else {

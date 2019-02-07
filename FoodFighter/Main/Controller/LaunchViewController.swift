@@ -16,7 +16,7 @@ class LaunchViewController: UIViewController {
     }
     
     //MARK: splash view animation
-    func animation(){
+    private func animation(){
         let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "foodfighter")!,iconInitialSize: CGSize(width: 150, height: 150), backgroundColor: UIColor(hexString: "#FFFFFF"))
         self.view.addSubview(revealingSplashView)
         
