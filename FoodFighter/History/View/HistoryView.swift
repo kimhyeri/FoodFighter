@@ -16,7 +16,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellHist", for: indexPath) as! MainListTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CellHist", for: indexPath) as? MainListTableViewCell else { return UITableViewCell() }
         guard let img = historyArray?[indexPath.row].image else { return cell }
         cell.titleView.layer.cornerRadius = 5
         cell.thumImage.image = UIImage(named: foodList.images[img].0)
