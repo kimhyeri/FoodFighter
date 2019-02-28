@@ -34,6 +34,10 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
         addTextField()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
+    
     @IBAction func pressedSaveButton(_ sender: Any) {
         guard let title = restName.text else { return }
         guard let date = dateText.text else { return }
@@ -89,7 +93,8 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     }
     
     func checkBolck() {
-        guard let restCount = restName.text?.count , let dateCount = dateText.text?.count else { return }
+        guard let restCount = restName.text?.count,
+            let dateCount = dateText.text?.count else { return }
   
         if restCount >= 1 && dateCount >= 1 {
             saveButton.isEnabled = true
@@ -97,10 +102,4 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
             saveButton.isEnabled = false
         }
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.view.endEditing(true)
-    }
-    
 }
-

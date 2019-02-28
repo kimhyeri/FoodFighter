@@ -50,7 +50,6 @@ class ViewController: UIViewController {
     }
     
     func showAlertController(style: UIAlertControllerStyle){
-        
         let alertController: UIAlertController
         alertController = UIAlertController(title: "푸드파이터", message: "음식을 드셨나요?", preferredStyle: style)
         

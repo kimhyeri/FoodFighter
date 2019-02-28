@@ -9,7 +9,6 @@
 import UIKit
 
 extension AddListViewController {
-    
     func setImage(count: Int) {
         self.imageName.text = foodList.images[count].1
         self.imageView.image = UIImage(named: foodList.images[count].0)
@@ -46,6 +45,5 @@ extension AddListViewController {
         datePicker?.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
         datePicker?.minimumDate = Date()
         dateText.inputView = datePicker
-        
     }
 }
