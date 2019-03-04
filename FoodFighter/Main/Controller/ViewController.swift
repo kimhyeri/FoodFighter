@@ -24,7 +24,6 @@ class ViewController: UIViewController {
         loadList()
         setNaigationBackButton()
         self.navigationItem.title = "HOME"
-        
     }
     
     @IBAction func historyButton(_ sender: Any) {

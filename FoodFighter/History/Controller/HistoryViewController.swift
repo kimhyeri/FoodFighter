@@ -9,7 +9,7 @@
 import RealmSwift
 
 class HistoryViewController: UIViewController {
-    
+    var cellId = "CellHist"
     var historyArray: Results<MainList>?
     var foodList = FoodList()
     let realm = try! Realm()
@@ -18,7 +18,6 @@ class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setTitle()
         loadhistory()
     }

@@ -28,15 +28,13 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
         cell.title.text = listArray? [indexPath.row].title
         if dateCal(date: timeValue) < 0 {
             cell.dDay.text = "끝"
-        } else {
-            cell.dDay.text = "D-\(dateCal(date: timeValue))"
+            return cell
         }
-        
+        cell.dDay.text = "D-\(dateCal(date: timeValue))"
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             do{
                 try self.realm.write {
