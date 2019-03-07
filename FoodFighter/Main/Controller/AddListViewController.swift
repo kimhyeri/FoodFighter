@@ -20,12 +20,11 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
 
-    var foodList = FoodList()
-    var datePicker: UIDatePicker?
+    private let realm = try! Realm()
+    private var datePicker: UIDatePicker?
     private var buttonCount = 0
     private var listArray: Results<MainList>?
     private var myDate: Date?
-    private let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +43,9 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
         let new = MainList()
         new.title = title
         new.descript = date
-        new.image = self.buttonCount
+        new.imageString = FoodList.allCases[buttonCount].imageString
         new.createdTime = myDate
-        
         self.save(foodList: new)
-        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "start") as! CustomNaviController
         self.present(vc, animated: true, completion: nil)
     }
@@ -57,12 +54,12 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
         switch sender.tag {
         case 0:
             if(buttonCount == 0) {
-                buttonCount = foodList.images.count - 1
+                buttonCount = FoodList.count - 1
             } else {
                 buttonCount = buttonCount - 1
             }
         default:
-            if(buttonCount == foodList.images.count - 1) {
+            if(buttonCount == FoodList.count - 1) {
                 buttonCount = 0
             } else {
                 buttonCount = buttonCount + 1
@@ -72,7 +69,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     }
     
     @IBAction func textChanged(_ sender: SkyFloatingLabelTextField) {
-        checkBolck()
+        checkAvailable()
     }
 
     func save(foodList: MainList) {
@@ -92,14 +89,53 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
         dateText.text = dateFormat.string(from: datePicker.date)
     }
     
-    func checkBolck() {
+    func checkAvailable() {
         guard let restCount = restName.text?.count,
             let dateCount = dateText.text?.count else { return }
-  
         if restCount >= 1 && dateCount >= 1 {
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false
         }
+    }
+}
+
+extension AddListViewController {
+    func setImage(count: Int) {
+        self.imageName.text = FoodList.allCases[count].enumString
+        self.imageView.image = UIImage(named: FoodList.allCases[count].imageString)
+    }
+    
+    func addTextField(){
+        let rose = UIColor(red: 188/255, green: 109/255, blue: 79/255, alpha: 1.0)
+        restName.placeholder = "가게명을 입력해주세요"
+        restName.title = "그곳이 맛집이군요 😄"
+        self.secondView.addSubview(restName)
+        
+        restName.setValue(rose, forKeyPath: "_placeholderLabel.textColor")
+        restName.titleColor = rose
+        restName.tintColor = .darkGray
+        restName.selectedLineColor = rose
+        restName.selectedTitleColor = rose
+        restName.textColor = .darkGray
+        restName.lineColor = rose
+        
+        dateText.placeholder = "날짜를 선택해주세요"
+        dateText.title = "잘 기다려 봅시다 😄"
+        dateText.setValue(rose, forKeyPath: "_placeholderLabel.textColor")
+        dateText.titleColor = rose
+        dateText.tintColor = .darkGray
+        dateText.selectedLineColor = rose
+        dateText.selectedTitleColor = rose
+        dateText.textColor = .darkGray
+        dateText.lineColor = rose
+        
+        datePicker = UIDatePicker()
+        datePicker?.backgroundColor = UIColor.clear
+        datePicker?.locale = NSLocale(localeIdentifier: "ko_KO") as Locale
+        datePicker?.datePickerMode = .dateAndTime
+        datePicker?.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
+        datePicker?.minimumDate = Date()
+        dateText.inputView = datePicker
     }
 }

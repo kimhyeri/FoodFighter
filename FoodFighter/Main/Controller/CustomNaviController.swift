@@ -9,13 +9,12 @@
 import UIKit
 
 class CustomNaviController: UINavigationController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        defaultNavi()
+        setupNavigationBar()
     }
     
-    private func defaultNavi() {
+    private func setupNavigationBar() {
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.tintColor = .darkGray

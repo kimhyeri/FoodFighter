@@ -12,8 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var listArray: Results<MainList>?
-    var foodList = FoodList()
+    private var listArray: Results<MainList>?
     
     private let calender = NSCalendar.current
     private let defaults = UserDefaults.standard
@@ -21,7 +20,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadList()
+        loadFoodList()
         setNaigationBackButton()
         self.navigationItem.title = "HOME"
     }
@@ -40,7 +39,7 @@ class ViewController: UIViewController {
         return components.day ?? 0
     }
     
-    func loadList() {
+    func loadFoodList() {
         listArray = realm.objects(MainList.self).filter("done == false")
         if listArray?.count == 0 {
             setDefaultView(messgae: "푸드파이터의 일정을 등록하세요 !")
@@ -67,7 +66,7 @@ class ViewController: UIViewController {
                 do {
                     try self.realm.write {
                         item.done = true
-                        self.loadList()
+                        self.loadFoodList()
                         self.showToast(message: "진정한 푸드파이터 입니다")
                     }
                 } catch {
@@ -81,6 +80,46 @@ class ViewController: UIViewController {
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension ViewController : UITableViewDataSource, UITableViewDelegate  {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.showAlertController(style:. actionSheet)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listArray?.count ?? 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MainListTableViewCell else { return UITableViewCell() }
+        guard let img = listArray?[indexPath.row].imageString, 
+            let timeValue = listArray?[indexPath.row].createdTime
+            else { return cell }  
+        cell.thumImage.image = UIImage(named: img)
+        cell.descript.text = listArray? [indexPath.row].descript
+        cell.title.text = listArray? [indexPath.row].title
+        if dateCal(date: timeValue) < 0 {
+            cell.dDay.text = "끝"
+            return cell
+        }
+        cell.dDay.text = "D-\(dateCal(date: timeValue))"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            do{
+                try self.realm.write {
+                    self.realm.delete(self.listArray![indexPath.row])
+                    loadFoodList()
+                }
+            } catch {
+                print("error")
+            }
+        }
     }
 }
 

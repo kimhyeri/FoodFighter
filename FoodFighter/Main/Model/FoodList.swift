@@ -8,14 +8,55 @@
 
 import Foundation
 
-struct FoodList {
-  var images = [
-        ("image0","한식"),
-        ("image1", "중식"),
-        ("image2", "일식"),
-        ("image3", "양식"),
-        ("image4", "패스트푸드"),
-        ("image5", "디저트"),
-        ("image6", "야식")
-    ]
+@objc enum FoodList: Int, CaseIterable {
+    
+    case 한식 = 0
+    case 중식
+    case 일식
+    case 양식
+    case 패스트푸드
+    case 디저트
+    case 야식
+    
+    var enumString: String {
+        switch self {
+        case .한식:
+            return "한식"
+        case .중식:
+            return "중식"
+        case .일식:
+            return "일식"
+        case .양식:
+            return "양식"
+        case .패스트푸드:
+            return "패스트푸드"
+        case .디저트:
+            return "디저트"
+        case .야식:
+            return "야식"
+        }
+    }
+    
+    var imageString: String {
+        switch self {
+        case .한식:
+            return "image0"
+        case .중식:
+            return "image1"
+        case .일식:
+            return "image2"
+        case .양식:
+            return "image3"
+        case .패스트푸드:
+            return "image4"
+        case .디저트:
+            return "image5"
+        case .야식:
+            return "image6"
+        }
+    }
+    
+    static var count: Int {
+        return FoodList.allCases.count
+    }
 }

@@ -12,18 +12,17 @@ class HistoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    private var historyArray: Results<MainList>?
-    private var foodList = FoodList()
     private let cellId = "CellHist"
     private let realm = try! Realm()
+    private var historyArray: Results<MainList>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setNaviagationTitle()
-        loadhistoryList()
+        loadHistoryList()
     }
     
-    func loadhistoryList() {
+    func loadHistoryList() {
         historyArray = realm.objects(MainList.self).filter("done == true")
         if historyArray?.count == 0 {
             setDefaultView(messgae: "푸드파이터의 기록을 남겨주세요 !") 
@@ -48,9 +47,9 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
             for: indexPath) as? MainListTableViewCell
             else { return UITableViewCell() 
         }
-        guard let img = historyArray?[indexPath.row].image else { return cell }
+        guard let img = historyArray?[indexPath.row].imageString else { return cell }
         cell.roundCorners(layer: cell.titleView.layer, radius: 5)
-        cell.thumImage.image = UIImage(named: foodList.images[img].0)
+        cell.thumImage.image = UIImage(named: img)
         cell.descript.text = historyArray? [indexPath.row].descript
         cell.title.text = historyArray? [indexPath.row].title
         return cell
@@ -61,7 +60,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
             do{
                 try self.realm.write {
                     self.realm.delete(self.historyArray![indexPath.row])
-                    loadhistoryList()
+                    loadHistoryList()
                 }
             } catch {
                 print("error")
