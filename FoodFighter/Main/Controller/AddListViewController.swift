@@ -72,7 +72,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
         checkAvailable()
     }
 
-    func save(foodList: MainList) {
+    private func save(foodList: MainList) {
         do{
             try realm.write{
                 realm.add(foodList)
@@ -82,14 +82,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
         }
     }
     
-    @objc func dateChanged(datePicker: UIDatePicker){
-        myDate = datePicker.date
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "YYYY년 MM월 dd일 HH시 mm분"
-        dateText.text = dateFormat.string(from: datePicker.date)
-    }
-    
-    func checkAvailable() {
+    private func checkAvailable() {
         guard let restCount = restName.text?.count,
             let dateCount = dateText.text?.count else { return }
         if restCount >= 1 && dateCount >= 1 {
@@ -98,15 +91,22 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
             saveButton.isEnabled = false
         }
     }
+    
+    @objc func dateChanged(datePicker: UIDatePicker){
+        myDate = datePicker.date
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "YYYY년 MM월 dd일 HH시 mm분"
+        dateText.text = dateFormat.string(from: datePicker.date)
+    }
 }
 
 extension AddListViewController {
-    func setImage(count: Int) {
+    private func setImage(count: Int) {
         self.imageName.text = FoodList.allCases[count].enumString
         self.imageView.image = UIImage(named: FoodList.allCases[count].imageString)
     }
     
-    func addTextField(){
+    private func addTextField(){
         let rose = UIColor(red: 188/255, green: 109/255, blue: 79/255, alpha: 1.0)
         restName.placeholder = "가게명을 입력해주세요"
         restName.title = "그곳이 맛집이군요 😄"

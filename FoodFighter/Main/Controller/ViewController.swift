@@ -13,10 +13,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var listArray: Results<MainList>?
-    
+    private let cellId = "Cell"
     private let calender = NSCalendar.current
     private let defaults = UserDefaults.standard
-    let realm = try! Realm()
+    private let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func dateCal(date: Date) -> Int {
+    private func dateCal(date: Date) -> Int {
         let now = Date()
         let date1 = calender.startOfDay(for: now)
         let date2 = calender.startOfDay(for: date)
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         return components.day ?? 0
     }
     
-    func loadFoodList() {
+    private func loadFoodList() {
         listArray = realm.objects(MainList.self).filter("done == false")
         if listArray?.count == 0 {
             setDefaultView(messgae: "푸드파이터의 일정을 등록하세요 !")
@@ -49,20 +49,26 @@ class ViewController: UIViewController {
     
     func showAlertController(style: UIAlertControllerStyle){
         let alertController: UIAlertController
-        alertController = UIAlertController(title: "푸드파이터", message: "음식을 드셨나요?", preferredStyle: style)
+        alertController = UIAlertController(title: "푸드파이터",
+                                            message: "음식을 드셨나요?", 
+                                            preferredStyle: style
+        )
         
         let noAction: UIAlertAction
-        noAction = UIAlertAction(title: "아니요 😂", style: .cancel, handler: {[weak self](
-            action: UIAlertAction) in
+        noAction = UIAlertAction(title: "아니요 😂",
+                                 style: .cancel,
+                                 handler: {[weak self] (action: UIAlertAction) in
             guard let self = self else { return }
             self.showToast(message: "얼른 도전하세요")
         })
         
         let cancelAction: UIAlertAction
-        cancelAction = UIAlertAction(title: "네 😇", style: .default, handler: {[weak self](
-            action: UIAlertAction) in
+        cancelAction = UIAlertAction(title: "네 😇",
+                                     style: .default, 
+                                     handler: {[weak self]( action: UIAlertAction) in
             guard let self = self else { return }
-            if let indexPath = self.tableView.indexPathForSelectedRow, let item = self.listArray?[indexPath.row] {
+            if let indexPath = self.tableView.indexPathForSelectedRow,
+                let item = self.listArray?[indexPath.row] {
                 do {
                     try self.realm.write {
                         item.done = true
@@ -75,10 +81,8 @@ class ViewController: UIViewController {
                 
             }
         })
-        
         alertController.addAction(noAction)
         alertController.addAction(cancelAction)
-        
         self.present(alertController, animated: true, completion: nil)
     }
 }
@@ -94,7 +98,7 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MainListTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? MainListTableViewCell else { return UITableViewCell() }
         guard let img = listArray?[indexPath.row].imageString, 
             let timeValue = listArray?[indexPath.row].createdTime
             else { return cell }  
