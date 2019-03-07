@@ -30,7 +30,7 @@
 class MainList : Object {
     @objc dynamic var title : String = ""
     @objc dynamic var descript : String = ""
-    @objc dynamic var image : Int = 0
+    @objc dynamic var imageString : String = ""
     @objc dynamic var done : Bool = false
     @objc dynamic var createdTime : Date? 
 }
@@ -42,5 +42,5 @@ class MainList : Object {
 ## Version 1.2
 > 색상 변경, 카테고리 아이템 변경
 
-## Screen 📸 
+## 📸 
 ![텍스트목록](./screenshot/screen.png)
