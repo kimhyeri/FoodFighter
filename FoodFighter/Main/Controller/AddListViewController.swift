@@ -83,13 +83,9 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     }
     
     private func checkAvailable() {
-        guard let restCount = restName.text?.count,
-            let dateCount = dateText.text?.count else { return }
-        if restCount >= 1 && dateCount >= 1 {
-            saveButton.isEnabled = true
-        } else {
-            saveButton.isEnabled = false
-        }
+        guard restName.text?.isEmpty == false,
+            dateText.text?.isEmpty == false else { return }
+        saveButton.isEnabled = true
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){

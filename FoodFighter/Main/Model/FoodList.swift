@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc enum FoodList: Int, CaseIterable {
+enum FoodList: Int, CaseIterable {
     
     case 한식 = 0
     case 중식
