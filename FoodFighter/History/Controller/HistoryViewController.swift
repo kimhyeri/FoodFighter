@@ -12,7 +12,7 @@ class HistoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    private let cellId = "CellHist"
+    private let cellId = "CellHistory"
     private let realm = try! Realm()
     private var historyArray: Results<MainList>?
 
