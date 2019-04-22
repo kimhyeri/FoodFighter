@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         loadFoodList()
         setNaigationBackButton()
-        self.navigationItem.title = "HOME"
+        self.navigationItem.title = "푸트파이터 일정"
     }
     
     @IBAction func historyButton(_ sender: Any) {
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController : UITableViewDataSource, UITableViewDelegate  {
+extension ViewController: UITableViewDataSource, UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.showAlertController(style:. actionSheet)

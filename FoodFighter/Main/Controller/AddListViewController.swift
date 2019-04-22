@@ -9,8 +9,9 @@
 import RealmSwift
 import SkyFloatingLabelTextField
 
-class AddListViewController: UIViewController , UITextFieldDelegate{
+class AddListViewController: UIViewController ,UITextFieldDelegate{
     
+    @IBOutlet weak var upperStackView: UIStackView!
     @IBOutlet weak var labelView: UIView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var imageName: UILabel!
@@ -19,6 +20,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var restName: SkyFloatingLabelTextField!
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
+    @IBOutlet var text: [SkyFloatingLabelTextField]!
 
     private let realm = try! Realm()
     private var datePicker: UIDatePicker?
@@ -59,7 +61,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
                 buttonCount = buttonCount + 1
             }
         }
-        setImage(count: buttonCount)
+        setupImage(count: buttonCount)
     }
     
     @IBAction func textChanged(_ sender: SkyFloatingLabelTextField) {
@@ -102,7 +104,7 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
 }
 
 extension AddListViewController {
-    private func setImage(count: Int) {
+    private func setupImage(count: Int) {
         self.imageName.text = FoodList.allCases[count].enumString
         self.imageView.image = UIImage(named: FoodList.allCases[count].imageString)
     }
@@ -114,26 +116,19 @@ extension AddListViewController {
                            alpha: 1.0
         )
         restName.placeholder = "가게명을 입력해주세요"
-        restName.title = "그곳이 맛집이군요 😄"
-        self.secondView.addSubview(restName)
-        
-        restName.setValue(rose, forKeyPath: "_placeholderLabel.textColor")
-        restName.titleColor = rose
-        restName.tintColor = .darkGray
-        restName.selectedLineColor = rose
-        restName.selectedTitleColor = rose
-        restName.textColor = .darkGray
-        restName.lineColor = rose
-        
+        restName.title = "그곳이 맛집이군요 😄"   
         dateText.placeholder = "날짜를 선택해주세요"
         dateText.title = "잘 기다려 봅시다 😄"
-        dateText.setValue(rose, forKeyPath: "_placeholderLabel.textColor")
-        dateText.titleColor = rose
-        dateText.tintColor = .darkGray
-        dateText.selectedLineColor = rose
-        dateText.selectedTitleColor = rose
-        dateText.textColor = .darkGray
-        dateText.lineColor = rose
+        
+        text.forEach({ (textField) in 
+            textField.setValue(rose, forKeyPath: "_placeholderLabel.textColor")
+            textField.titleColor = rose
+            textField.tintColor = .darkGray
+            textField.selectedLineColor = rose
+            textField.selectedTitleColor = rose
+            textField.textColor = .darkGray
+            textField.lineColor = rose
+        })
         
         datePicker = UIDatePicker()
         datePicker?.backgroundColor = UIColor.clear
