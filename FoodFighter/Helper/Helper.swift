@@ -9,29 +9,36 @@
 import UIKit
 
 extension UIViewController{
-    
+    static let backbutton = "backButton"
+
     func setNavigationBar(){
-        let bar:UINavigationBar! =  self.navigationController?.navigationBar
-        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        bar.shadowImage = UIImage()
-        bar.backgroundColor = UIColor.clear
+        if let bar = self.navigationController?.navigationBar {
+            bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+            bar.shadowImage = UIImage()
+            bar.backgroundColor = UIColor.clear
+        }
     }
     
     func setNaigationBackButton(){
-        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backButton")
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "backButton")
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: UIViewController.backbutton)
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: UIViewController.backbutton)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
     }
     
     func showToast(message : String) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 125, y: self.view.frame.size.height-100, width: 250, height: 35))
+        let toastFrame = CGRect(x: self.view.frame.size.width/2 - 125,
+                           y:  self.view.frame.size.height - 100,
+                           width: 250,
+                           height: 35
+        )
+        let toastLabel = UILabel(frame: toastFrame)
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
-        toastLabel.textAlignment = .center;
+        toastLabel.textAlignment = .center
         toastLabel.font = UIFont(name: "System", size: 10.0)
         toastLabel.text = message
         toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
+        toastLabel.layer.cornerRadius = 10
         toastLabel.clipsToBounds  =  true
         self.view.addSubview(toastLabel)
         UIView.animate(withDuration: 2.0, delay: 0.1, options: .curveEaseOut, animations: {
