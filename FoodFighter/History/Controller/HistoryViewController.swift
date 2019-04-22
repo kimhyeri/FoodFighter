@@ -24,7 +24,7 @@ class HistoryViewController: UIViewController {
     
     func loadHistoryList() {
         historyArray = realm.objects(MainList.self).filter("done == true")
-        if historyArray?.count == 0 {
+        if let history = historyArray, history.isEmpty {
             setDefaultView(messgae: "푸드파이터의 기록을 남겨주세요 !") 
         }
         tableView.reloadData()
