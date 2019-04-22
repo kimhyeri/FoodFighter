@@ -22,7 +22,7 @@ class HistoryViewController: UIViewController {
         loadHistoryList()
     }
     
-    func loadHistoryList() {
+    private func loadHistoryList() {
         historyArray = realm.objects(MainList.self).filter("done == true")
         if let history = historyArray, history.isEmpty {
             setDefaultView(messgae: "푸드파이터의 기록을 남겨주세요 !") 
@@ -30,7 +30,7 @@ class HistoryViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func setNaviagationTitle() {
+    private func setNaviagationTitle() {
         self.navigationItem.title = "푸드파이터 전적"
     }
 }

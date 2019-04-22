@@ -36,16 +36,10 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
-    
+
     @IBAction func pressedSaveButton(_ sender: Any) {
-        guard let title = restName.text else { return }
-        guard let date = dateText.text else { return }
-        let new = MainList()
-        new.title = title
-        new.descript = date
-        new.imageString = FoodList.allCases[buttonCount].imageString
-        new.createdTime = myDate
-        self.save(foodList: new)
+        guard let data = createData() else { return }
+        self.save(foodList: data)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "start") as! CustomNaviController
         self.present(vc, animated: true, completion: nil)
     }
@@ -82,6 +76,17 @@ class AddListViewController: UIViewController , UITextFieldDelegate{
         }
     }
     
+    private func createData() -> MainList? {
+        guard let title = restName.text,
+            let date = dateText.text else { return nil }
+        let new = MainList()
+        new.title = title
+        new.descript = date
+        new.imageString = FoodList.allCases[buttonCount].imageString
+        new.createdTime = myDate
+        return new
+    }
+    
     private func checkAvailable() {
         guard restName.text?.isEmpty == false,
             dateText.text?.isEmpty == false else { return }
@@ -103,7 +108,11 @@ extension AddListViewController {
     }
     
     private func addTextField(){
-        let rose = UIColor(red: 188/255, green: 109/255, blue: 79/255, alpha: 1.0)
+        let rose = UIColor(red: 188/255,
+                           green: 109/255, 
+                           blue: 79/255,
+                           alpha: 1.0
+        )
         restName.placeholder = "가게명을 입력해주세요"
         restName.title = "그곳이 맛집이군요 😄"
         self.secondView.addSubview(restName)

@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     
     private var listArray: Results<MainList>?
     private let cellId = "Cell"
-    private let calender = NSCalendar.current
     private let defaults = UserDefaults.standard
     private let realm = try! Realm()
     
@@ -32,6 +31,7 @@ class ViewController: UIViewController {
     }
     
     private func dateCal(date: Date) -> Int {
+        let calender = NSCalendar.current
         let now = Date()
         let date1 = calender.startOfDay(for: now)
         let date2 = calender.startOfDay(for: date)
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     
     private func loadFoodList() {
         listArray = realm.objects(MainList.self).filter("done == false")
-        if listArray?.count == 0 {
+        if let list = listArray, list.isEmpty {
             setDefaultView(messgae: "푸드파이터의 일정을 등록하세요 !")
         }
         self.tableView.reloadData()
