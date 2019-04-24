@@ -25,3 +25,5 @@ class MainListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 }
+
+extension MainListTableViewCell: Reusable {}

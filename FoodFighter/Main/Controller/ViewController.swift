@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var listArray: Results<MainList>?
-    private let cellId = "Cell"
     private let defaults = UserDefaults.standard
     private let realm = try! Realm()
     
@@ -98,7 +97,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? MainListTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainListTableViewCell.reuseIdentifier, for: indexPath) as? MainListTableViewCell else { return UITableViewCell() }
         guard let img = listArray?[indexPath.row].imageString, 
             let timeValue = listArray?[indexPath.row].createdTime
             else { return cell }  

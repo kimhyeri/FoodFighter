@@ -12,7 +12,6 @@ class HistoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    private let cellId = "CellHistory"
     private let realm = try! Realm()
     private var historyArray: Results<MainList>?
 
@@ -43,7 +42,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: cellId,
+            withIdentifier: MainListTableViewCell.reuseIdentifier,
             for: indexPath) as? MainListTableViewCell
             else { return UITableViewCell() 
         }
