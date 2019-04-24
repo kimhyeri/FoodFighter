@@ -29,20 +29,14 @@ class MainListTableViewCell: UITableViewCell {
         switch category {
         case .history:
             self.roundCorners(layer: self.titleView.layer, radius: 5)
-            self.thumImage.image = UIImage(named: data.imageString)
-            self.descript.text = data.descript
-            self.title.text = data.title
         case .main:
             guard let time = data.createdTime else { return }
-            self.thumImage.image = UIImage(named: data.imageString)
-            self.descript.text = data.descript
-            self.title.text = data.title
-            if dateCal(date: time) < 0 {
-                self.dDay.text = "끝"
-            } else {
-                self.dDay.text = "D-\(dateCal(date: time))"
-            }
+            let timerString = dateCal(date: time) < 0 ? "끝" : "D-\(dateCal(date: time))"
+            self.dDay.text = timerString
         }
+        self.thumImage.image = UIImage(named: data.imageString)
+        self.descript.text = data.descript
+        self.title.text = data.title
     }
     
     private func dateCal(date: Date) -> Int {
