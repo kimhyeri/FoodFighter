@@ -25,8 +25,7 @@ class LaunchViewController: UIViewController {
         self.view.addSubview(revealingSplashView)
         
         revealingSplashView.startAnimation(){
-            guard let splash = self.storyboard?.instantiateViewController(withIdentifier: "start") else { return }
-            self.present(splash, animated: false, completion: nil)
+            self.moveToDefaultPage()
         }
     }
 }

@@ -9,6 +9,11 @@
 import UIKit
 
 extension UIViewController {
+    func moveToDefaultPage() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "start") as! CustomNaviController
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     func setDefaultView(messgae: String) {
         let nothingView = UIView()
         nothingView.backgroundColor = .clear

@@ -25,6 +25,7 @@ class AddListViewController: UIViewController ,UITextFieldDelegate{
     private let realm = try! Realm()
     private var datePicker: UIDatePicker?
     private var buttonCount = 0
+    private var totalCount = FoodList.count
     private var myDate: Date?
 
     override func viewDidLoad() {
@@ -37,22 +38,20 @@ class AddListViewController: UIViewController ,UITextFieldDelegate{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
-
+    
     @IBAction func pressedSaveButton(_ sender: Any) {
         guard let data = createData() else { return }
         self.save(foodList: data)
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "start") as! CustomNaviController
-        self.present(vc, animated: true, completion: nil)
+        moveToDefaultPage()
     }
     
     @IBAction func rightButton(_ sender: UIButton) {
         switch sender.tag {
         case 0: //up
-            buttonCount = buttonCount == 0 ? FoodList.count - 1 : buttonCount - 1
+            addCount(num: +1)
         default: //down
-            buttonCount = buttonCount == FoodList.count - 1 ? 0 : buttonCount + 1
+            addCount(num: -1)
         }
-        setupImage(count: buttonCount)
     }
     
     @IBAction func textChanged(_ sender: SkyFloatingLabelTextField) {
@@ -91,6 +90,17 @@ class AddListViewController: UIViewController ,UITextFieldDelegate{
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "YYYY년 MM월 dd일 HH시 mm분"
         dateText.text = dateFormat.string(from: datePicker.date)
+    }
+
+    private func addCount(num: Int) {
+        if buttonCount == 0 {
+            buttonCount = totalCount
+        } else if buttonCount == totalCount {
+            buttonCount = 0
+        } else {
+            buttonCount += num
+        }
+        setupImage(count: buttonCount)
     }
 }
 
