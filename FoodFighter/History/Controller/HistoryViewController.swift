@@ -44,11 +44,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: MainListTableViewCell.reuseIdentifier,
             for: indexPath) as? MainListTableViewCell
             else { return UITableViewCell() }
-        guard let img = historyArray?[indexPath.row].imageString else { return cell }
-        cell.roundCorners(layer: cell.titleView.layer, radius: 5)
-        cell.thumImage.image = UIImage(named: img)
-        cell.descript.text = historyArray? [indexPath.row].descript
-        cell.title.text = historyArray? [indexPath.row].title
+        guard let rowData = historyArray?[indexPath.row] else { return cell }
+        cell.config(category: .history, data: rowData)
         return cell
     }
     

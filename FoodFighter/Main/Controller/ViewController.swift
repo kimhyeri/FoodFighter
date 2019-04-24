@@ -12,9 +12,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var listArray: Results<MainList>?
     private let defaults = UserDefaults.standard
     private let realm = try! Realm()
+    private var listArray: Results<MainList>? {
+        didSet {
+            if let list = listArray, list.isEmpty {
+                setDefaultView(messgae: "푸드파이터의 일정을 등록하세요 !")
+            }
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,21 +36,8 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func dateCal(date: Date) -> Int {
-        let calender = NSCalendar.current
-        let now = Date()
-        let date1 = calender.startOfDay(for: now)
-        let date2 = calender.startOfDay(for: date)
-        let components = calender.dateComponents([.day], from: date1, to: date2)
-        return components.day ?? 0
-    }
-    
     private func loadFoodList() {
         listArray = realm.objects(MainList.self).filter("done == false")
-        if let list = listArray, list.isEmpty {
-            setDefaultView(messgae: "푸드파이터의 일정을 등록하세요 !")
-        }
-        self.tableView.reloadData()
     }
     
     func showAlertController(style: UIAlertControllerStyle){
@@ -98,17 +92,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainListTableViewCell.reuseIdentifier, for: indexPath) as? MainListTableViewCell else { return UITableViewCell() }
-        guard let img = listArray?[indexPath.row].imageString, 
-            let timeValue = listArray?[indexPath.row].createdTime
-            else { return cell }  
-        cell.thumImage.image = UIImage(named: img)
-        cell.descript.text = listArray? [indexPath.row].descript
-        cell.title.text = listArray? [indexPath.row].title
-        if dateCal(date: timeValue) < 0 {
-            cell.dDay.text = "끝"
-            return cell
-        }
-        cell.dDay.text = "D-\(dateCal(date: timeValue))"
+        guard let rowData = listArray?[indexPath.row] else { return cell }
+        cell.config(category: .main, data: rowData)
         return cell
     }
     
