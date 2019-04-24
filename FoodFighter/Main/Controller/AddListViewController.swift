@@ -25,7 +25,6 @@ class AddListViewController: UIViewController ,UITextFieldDelegate{
     private let realm = try! Realm()
     private var datePicker: UIDatePicker?
     private var buttonCount = 0
-    private var listArray: Results<MainList>?
     private var myDate: Date?
 
     override func viewDidLoad() {
@@ -48,18 +47,10 @@ class AddListViewController: UIViewController ,UITextFieldDelegate{
     
     @IBAction func rightButton(_ sender: UIButton) {
         switch sender.tag {
-        case 0:
-            if(buttonCount == 0) {
-                buttonCount = FoodList.count - 1
-            } else {
-                buttonCount = buttonCount - 1
-            }
-        default:
-            if(buttonCount == FoodList.count - 1) {
-                buttonCount = 0
-            } else {
-                buttonCount = buttonCount + 1
-            }
+        case 0: //up
+            buttonCount = buttonCount == 0 ? FoodList.count - 1 : buttonCount - 1
+        default: //down
+            buttonCount = buttonCount == FoodList.count - 1 ? 0 : buttonCount + 1
         }
         setupImage(count: buttonCount)
     }

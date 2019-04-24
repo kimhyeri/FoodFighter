@@ -17,7 +17,11 @@ class LaunchViewController: UIViewController {
     
     //MARK: splash view animation
     private func animation(){
-        let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: applicationName)!,iconInitialSize: CGSize(width: 150, height: 150), backgroundColor: UIColor(hexString: "#FFFFFF"))
+        let revealingSplashView = RevealingSplashView(
+            iconImage: UIImage(named: applicationName)!,
+            iconInitialSize: CGSize(width: 150, height: 150), 
+            backgroundColor: UIColor(hexString: "#FFFFFF")
+        )
         self.view.addSubview(revealingSplashView)
         
         revealingSplashView.startAnimation(){

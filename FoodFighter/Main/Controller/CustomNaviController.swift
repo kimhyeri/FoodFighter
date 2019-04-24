@@ -19,4 +19,5 @@ class CustomNaviController: UINavigationController {
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.tintColor = .darkGray
     }
+    
 }
