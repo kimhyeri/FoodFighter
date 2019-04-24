@@ -11,12 +11,8 @@ import UIKit
 extension UIViewController{
     static let backbutton = "backButton"
 
-    func setNavigationBar(){
-        if let bar = self.navigationController?.navigationBar {
-            bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-            bar.shadowImage = UIImage()
-            bar.backgroundColor = UIColor.clear
-        }
+    func setNavigationBarTitle(title: String) {
+        self.navigationItem.title = title
     }
     
     func setNaigationBackButton(){

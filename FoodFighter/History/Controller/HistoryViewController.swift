@@ -13,24 +13,23 @@ class HistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private let realm = try! Realm()
-    private var historyArray: Results<MainList>?
+    private var historyArray: Results<MainList>? {
+        didSet {
+            if let history = historyArray, history.isEmpty {
+                setDefaultView(messgae: "푸드파이터의 기록을 남겨주세요 !") 
+            }
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNaviagationTitle()
+        setNavigationBarTitle(title: "푸드파이터 전적")
         loadHistoryList()
     }
     
     private func loadHistoryList() {
         historyArray = realm.objects(MainList.self).filter("done == true")
-        if let history = historyArray, history.isEmpty {
-            setDefaultView(messgae: "푸드파이터의 기록을 남겨주세요 !") 
-        }
-        tableView.reloadData()
-    }
-    
-    private func setNaviagationTitle() {
-        self.navigationItem.title = "푸드파이터 전적"
     }
 }
 
@@ -44,8 +43,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: MainListTableViewCell.reuseIdentifier,
             for: indexPath) as? MainListTableViewCell
-            else { return UITableViewCell() 
-        }
+            else { return UITableViewCell() }
         guard let img = historyArray?[indexPath.row].imageString else { return cell }
         cell.roundCorners(layer: cell.titleView.layer, radius: 5)
         cell.thumImage.image = UIImage(named: img)
