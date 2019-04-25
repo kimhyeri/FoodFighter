@@ -59,20 +59,18 @@ class ViewController: UIViewController {
         cancelAction = UIAlertAction(title: "네 😇",
                                      style: .default, 
                                      handler: {[weak self]( action: UIAlertAction) in
-            guard let self = self else { return }
-            if let indexPath = self.tableView.indexPathForSelectedRow,
-                let item = self.listArray?[indexPath.row] {
-                do {
-                    try self.realm.write {
-                        item.done = true
-                        self.loadFoodList()
-                        self.showToast(message: "진정한 푸드파이터 입니다")
-                    }
-                } catch {
-                    print("Error")
-                }
-                
-            }
+                                        guard let self = self else { return }
+                                        guard let indexPath = self.tableView.indexPathForSelectedRow,
+                                            let item = self.listArray?[indexPath.row] else { return }
+                                        do {
+                                            try self.realm.write {
+                                                item.done = true
+                                                self.loadFoodList()
+                                                self.showToast(message: "진정한 푸드파이터 입니다")
+                                            }
+                                        } catch {
+                                            print("Error")
+                                        }                            
         })
         alertController.addAction(noAction)
         alertController.addAction(cancelAction)
