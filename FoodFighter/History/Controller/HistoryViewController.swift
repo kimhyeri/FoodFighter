@@ -24,7 +24,7 @@ class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBarTitle(title: "푸드파이터 전적")
+        setNavigationBarTitle("푸드파이터 전적")
         loadHistoryList()
     }
     

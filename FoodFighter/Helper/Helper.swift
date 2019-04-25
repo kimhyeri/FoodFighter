@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController{
     static let backbutton = "backButton"
 
-    func setNavigationBarTitle(title: String) {
+    func setNavigationBarTitle(_ title: String) {
         self.navigationItem.title = title
     }
     

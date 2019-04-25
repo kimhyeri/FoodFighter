@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         loadFoodList()
         setNaigationBackButton()
-        setNavigationBarTitle(title: "푸드파이터 일정")
+        setNavigationBarTitle("푸드파이터 일정")
     }
     
     @IBAction func historyButton(_ sender: Any) {
