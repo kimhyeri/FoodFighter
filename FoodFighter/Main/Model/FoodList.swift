@@ -38,22 +38,7 @@ enum FoodList: Int, CaseIterable {
     }
     
     var imageString: String {
-        switch self {
-        case .한식:
-            return "image0"
-        case .중식:
-            return "image1"
-        case .일식:
-            return "image2"
-        case .양식:
-            return "image3"
-        case .패스트푸드:
-            return "image4"
-        case .디저트:
-            return "image5"
-        case .야식:
-            return "image6"
-        }
+        return "image\(self.rawValue)"
     }
     
     static var count: Int {
